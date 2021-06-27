@@ -46,6 +46,6 @@ If folder permission errors occur while deploying the project to the server, you
 
   ```
   chmod -R o+w storage
-  chmod 755 -R laravel-admin
+  chmod 755 -R laravel-blade-calendar
   ```
 
