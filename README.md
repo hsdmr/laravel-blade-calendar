@@ -20,7 +20,7 @@ If git is not installed on your computer, install the appropriate one for your o
 - Open the terminal screen and paste the code below and run it.
 
   ```
-  git clone https://github.com/hsdmr/laravel-admin.git
+  git clone https://github.com/hsdmr/laravel-blade-calendar.git
   ```
 ## Installation
 
