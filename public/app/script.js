@@ -16,7 +16,7 @@ async function renderCalendar(today = Date(), start = getMonday(Date()), end = g
         end : end.getFullYear()+'-'+(end.getMonth()+1)+'-'+end.getDate()+' 23:59:59'
     }
 
-    const events = await postUrl('http://localhost:8000/api/calendar', dates).then(data => {
+    const events = await postUrl(`${APP_URL}/api/calendar`, dates).then(data => {
         let events = []
         for(let i=0; i<data.events.length; i++){
             let event = {
@@ -120,7 +120,7 @@ function storeEvent(){
             end : end.getFullYear()+'-'+(end.getMonth()+1)+'-'+end.getDate()+' '+end.getHours()+':'+end.getMinutes()
         }
     if($('#idInput').val()==0){
-        postUrl(`http://localhost:8000/api/calendar/store`, data).then(data => {
+        postUrl(`${APP_URL}/api/calendar/store`, data).then(data => {
             showToastr(data.type,data.message)
             renderCalendar(start, getMonday(start), getSunday(start))
             $('#eventModal').modal('hide')
@@ -128,7 +128,7 @@ function storeEvent(){
     }
     else{
         let id = $('#idInput').val()
-        postUrl(`http://localhost:8000/api/calendar/${id}`, data).then(data => {
+        postUrl(`${APP_URL}/api/calendar/${id}`, data).then(data => {
             showToastr(data.type,data.message)
             renderCalendar(start, getMonday(start), getSunday(start))
             $('#eventModal').modal('hide')
@@ -148,7 +148,7 @@ function updateEvent(info){
         start : start.getFullYear()+'-'+(start.getMonth()+1)+'-'+start.getDate()+' '+start.getHours()+':'+start.getMinutes(),
         end : end.getFullYear()+'-'+(end.getMonth()+1)+'-'+end.getDate()+' '+end.getHours()+':'+end.getMinutes()
     }
-    postUrl(`http://localhost:8000/api/calendar/${id}`, data).then(data => {
+    postUrl(`${APP_URL}/api/calendar/${id}`, data).then(data => {
         showToastr(data.type,data.message)
         renderCalendar(start, getMonday(start), getSunday(start))
         $('#eventModal').modal('hide')
@@ -158,7 +158,7 @@ function updateEvent(info){
 function deleteEvent(){
     let id = $('#idInput').val()
     let start = $('#startInput').val()
-    postUrl(`http://localhost:8000/api/calendar/${id}/destroy`).then(data => {
+    postUrl(`${APP_URL}/api/calendar/${id}/destroy`).then(data => {
         showToastr(data.type,data.message)
         renderCalendar(start, getMonday(start), getSunday(start))
         $('#eventModal').modal('hide')
